@@ -10,6 +10,10 @@ module.exports = {
     filename: 'bundle.js',
   },
 
+  devServer:{
+    static: path.resolve(__dirname, 'public')
+  },
+
   resolve: {
     extensions: ['.js', '.jsx'],
   },
