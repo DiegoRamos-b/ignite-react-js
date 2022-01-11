@@ -1,16 +1,22 @@
 import React from "react";
 
-function RepositoryItem(props) {
-  
-  return (
-    <li>
-      <strong>{props.repository ?? 'Default title' }</strong>
-      <p>{props.description ?? 'untitle'}</p>
+function RepositoryItem({ repositories }) {
 
-      <a href={props.link ?? '#'} target={props.link && "_blank"}>
-        Acessar o site
-      </a>
-    </li>
+
+  return (
+    <>
+      {
+        repositories && repositories.map(repository => (
+          <li key={repository.id}>
+            <strong>{ repository.name }</strong>
+            <p>{repository.description ?? 'Default description'}</p>
+            <a href={repository.html_url} target="_blank">
+              Acessar repositorio
+            </a>
+          </li>
+        ))
+      }
+    </>
   );
 }
 
