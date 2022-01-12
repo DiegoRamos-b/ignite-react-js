@@ -14,14 +14,10 @@ function RepositoryList() {
       <h1>Lista de repositorios</h1>
 
       <ul>
-
-        {
-          responseFetch && (
-            responseFetch.map(repository => (
-              <RepositoryItem repository={repository} />
-            ))
-          )
-        }
+        {responseFetch &&
+          responseFetch.map(repository => (
+            <RepositoryItem repository={repository} />
+          ))}
       </ul>
     </section>
   );
