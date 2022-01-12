@@ -1,7 +1,7 @@
 import React from "react";
 import RepositoryList from "./components/RepositoryList";
 
-import './styles/global.scss';
+import "./styles/global.scss";
 
 function App() {
   return (
