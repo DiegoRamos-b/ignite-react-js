@@ -1,12 +1,21 @@
 import logoImg from '../../assets/logo.svg'
+
 import { Container, Content } from './style'
 
-export function Header() {
+
+interface HeaderProps {
+  OnHandleOpenModal: Function;
+}
+
+export function Header({ OnHandleOpenModal }: HeaderProps) {
+
   return (
     <Container>
       <Content>
         <img src={ logoImg } alt="dt money" />
-        <button type="button">Nova transação</button>
+        <button type="button" onClick={ OnHandleOpenModal() }>
+          Nova transação
+        </button>
       </Content>
     </Container>
   )
