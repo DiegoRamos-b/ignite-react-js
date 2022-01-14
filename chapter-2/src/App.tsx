@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Dashboard } from "./components/Dashboard";
 import { Header } from "./components/Header";
-import Modal from 'react-modal';
+import { TransactionModal } from './components/TransactionModal';
 
 
 function App() {
@@ -20,13 +20,8 @@ function App() {
     <>
       <Header OnHandleOpenModal={ handleOpenModal } />
       <Dashboard />
-
-      <Modal
-          isOpen={ modalIsOpen }
-          onRequestClose={ handleCloseModal }
-        >
-          <h2>Cadastrar transação</h2>
-        </Modal>
+      <TransactionModal modalIsOpen={ modalIsOpen } handleCloseModal={ handleCloseModal } />
+     
     </>
   );
 }

@@ -4,7 +4,7 @@ import { Container, Content } from './style'
 
 
 interface HeaderProps {
-  OnHandleOpenModal: Function;
+  OnHandleOpenModal: () => void;
 }
 
 export function Header({ OnHandleOpenModal }: HeaderProps) {
@@ -13,7 +13,7 @@ export function Header({ OnHandleOpenModal }: HeaderProps) {
     <Container>
       <Content>
         <img src={ logoImg } alt="dt money" />
-        <button type="button" onClick={ OnHandleOpenModal() }>
+        <button type="button" onClick={ () => OnHandleOpenModal() }>
           Nova transação
         </button>
       </Content>
