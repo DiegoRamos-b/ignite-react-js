@@ -1,5 +1,5 @@
 import { Summary } from "../Summary";
-import { TransacrionsTable } from "../TrasactionsTabble";
+import { TransacrionsTable } from "../TrasactionsTable";
 import { Container } from "./style";
 
 export function Dashboard() {
