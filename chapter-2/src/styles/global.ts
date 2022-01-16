@@ -79,4 +79,17 @@ export const GlobalStyle = createGlobalStyle`
     position: relative;
     border-radius: 0.5rem;
   }
+
+  .button-modal-close {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    border: 0;
+    background: transparent;
+
+    transition: 300ms;
+    &:hover {
+      filter: brightness(0.7);
+    }
+  }
 `;
