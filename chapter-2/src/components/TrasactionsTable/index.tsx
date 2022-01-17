@@ -15,10 +15,9 @@ export function TransacrionsTable() {
   const [transactions, setTransactions] = useState<Transactions[]>([]);
 
   useEffect(() => {
-    api
-      .get("/transactions")
-      .then(response => setTransactions(response.data.transactions));
+    api.get("/transactions").then(response => setTransactions(response.data.transactions));
   }, []);
+
 
   return (
     <Container>

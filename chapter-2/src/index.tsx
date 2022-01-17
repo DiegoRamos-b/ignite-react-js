@@ -20,6 +20,14 @@ createServer({
           category: 'dev',
           amount: 6000,
           date: new Date(),
+        },
+        {
+          id: 2,
+          title: 'Compra do mes',
+          type: 'withdrawal',
+          category: 'gasto mensal',
+          amount: 300,
+          date: new Date(),
         }
       ]
     });
