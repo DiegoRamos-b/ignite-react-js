@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Dashboard } from "./components/Dashboard";
 import { Header } from "./components/Header";
 import { TransactionModal } from './components/TransactionModal';
-import { TransactionsContext } from './context/TransactionsCotext';
+import { TransactionsProvider } from './context/TransactionsCotext';
 
 
 function App() {
@@ -18,11 +18,11 @@ function App() {
 
 
   return (
-    <TransactionsContext.Provider value={[]}>
+    <TransactionsProvider>
       <Header OnHandleOpenModal={ handleOpenModal } />
       <Dashboard />
       <TransactionModal modalIsOpen={ modalIsOpen } handleCloseModal={ handleCloseModal } />
-    </TransactionsContext.Provider>
+    </TransactionsProvider>
   );
 }
 
