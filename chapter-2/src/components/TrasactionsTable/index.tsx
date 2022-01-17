@@ -11,15 +11,12 @@ interface Transactions {
   date: string;
 }
 
-export function TransacrionsTable () {
-
-  const [transactions, setTransactions] = useState<Transactions []>([]);
+export function TransacrionsTable() {
+  const [transactions, setTransactions] = useState<Transactions[]>([]);
 
   useEffect(() => {
-    api.get('/transactions').then(json => setTransactions(json.data));
-  },[]);
-  console.log(transactions);
-  
+    api.get("/transactions").then(response => setTransactions(response.data.transactions));
+  }, []);
 
   return (
     <Container>
@@ -34,19 +31,14 @@ export function TransacrionsTable () {
         </thead>
 
         <tbody>
-          <tr>
-            <td>Desenvolvimento web</td>
-            <td className="deposit">+ R$ 12.000,00</td>
-            <td>Desenvolvimento</td>
-            <td>14/01/22</td>
-          </tr>
-
-          <tr>
-            <td>Luz</td>
-            <td className="withdrawal">- R$ 120,00</td>
-            <td>Custo mensal</td>
-            <td>14/01/22</td>
-          </tr>
+          {transactions.map(transaction => (
+            <tr key={transaction.id}>
+              <td>{transaction.title}</td>
+              <td className={transaction.type}>{transaction.amount}</td>
+              <td>{transaction.category}</td>
+              <td>{transaction.date}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </Container>

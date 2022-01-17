@@ -7,13 +7,28 @@ import { GlobalStyle } from './styles/global';
 
 createServer({
   models: {
-    transaction: Model,
+    transactions: Model,
+  },
+
+  seeds(server){
+    server.db.loadData({
+      transactions: [
+        {
+          id: 1,
+          title: 'freelancer de website',
+          type: 'deposit',
+          category: 'dev',
+          amount: 6000,
+          date: new Date(),
+        }
+      ]
+    });
   },
 
   routes(){
     this.namespace = 'api';
 
-    this.get('/transactions', () => this.schema.all('transactions'));
+    this.get('/transactions', () => this.schema.all('transactions'))
 
     this.post('/transactions', (schema, request) => {
       const data = JSON.parse(request.requestBody);

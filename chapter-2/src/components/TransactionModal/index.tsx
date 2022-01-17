@@ -32,8 +32,6 @@ export function TransactionModal({modalIsOpen, handleCloseModal }: TransactionMo
     }
 
     const response = await api.post('/transactions', data);
-
-    console.log(response);
   }
 
   return (
