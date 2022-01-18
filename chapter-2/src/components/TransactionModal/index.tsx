@@ -25,7 +25,13 @@ export function TransactionModal({modalIsOpen, handleCloseModal }: TransactionMo
   async function handleCreateNewTransaction (event: FormEvent){
     event.preventDefault();
 
-    createTransaction({ title, amount, category, type })
+    await createTransaction({ title, amount, category, type })
+    handleCloseModal();
+
+    setTitle('');
+    setCategory('');
+    setAmout(0);
+    setType('deposit');
   }
 
   return (
