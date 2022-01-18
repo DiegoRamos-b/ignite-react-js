@@ -1,7 +1,7 @@
 interface CardSummaryProps {
   title: string;
   image: string;
-  value: string;
+  value: number;
 }
 
 export function CardSummary(props: CardSummaryProps) {
@@ -11,7 +11,21 @@ export function CardSummary(props: CardSummaryProps) {
         <p>{props.title}</p>
         <img src={ props.image } alt={ props.title } />
       </header>
-      <strong>{`${props.value},00`}</strong>
+      <strong>
+        {
+          props.title === 'Saidas'? (
+            `- ${new Intl.NumberFormat('pt-BR', {
+              currency: 'BRL',
+              style: 'currency'
+            }).format(props.value)}`
+          ): (
+            new Intl.NumberFormat('pt-BR', {
+              currency: 'BRL',
+              style: 'currency'
+            }).format(props.value)
+          )
+        }
+      </strong>
     </div>
   );
 }
