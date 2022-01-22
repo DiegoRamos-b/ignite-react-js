@@ -12,7 +12,6 @@ class MyDocument extends Document {
             rel='stylesheet'
           />
         </Head>
-        <title>Ig News</title>
         <body>
           <Main />
           <NextScript />

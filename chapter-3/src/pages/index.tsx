@@ -1,9 +1,16 @@
 import style from "../styles/global.module.scss";
+import Head from 'next/head'
 
 export default function Home() {
   return (
-    <h1 className={ style.title }>
-      A <span>A</span>
-    </h1>
+    <>
+      <Head>
+        <title>Inicio | Ig News</title>
+      </Head>
+
+      <h1 className={ style.title }>
+        Hello <span>World</span>
+      </h1>
+    </>
   )
 }
