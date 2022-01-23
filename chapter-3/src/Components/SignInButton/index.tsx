@@ -6,10 +6,10 @@ export function SignInButton() {
   const isUserLoggedIn = true;
 
   return isUserLoggedIn ? (
-    <button type='button' className={ style.signInButton }>
+    <button type='button' className={style.signInButton}>
       <FaGithub color='#04d361' />
       Nome da pessoa
-      <FiX className={ style.closeIcon } color="#737380" />
+      <FiX className={style.closeIcon} color='#737380' />
     </button>
   ) : (
     <button type='button' className={style.signInButton}>
