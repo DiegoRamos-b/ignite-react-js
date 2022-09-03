@@ -1,8 +1,12 @@
 import React from 'react';
-import './styles/global.css';
+import RepositoryList from './components/RepositoryList';
 
 function App() {
-  return <div>testeeee</div>;
+  return (
+    <div>
+      <RepositoryList />
+    </div>
+  );
 }
 
 export default App;
