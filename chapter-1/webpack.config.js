@@ -14,6 +14,16 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
 
+  devServer: {
+    port: 3000,
+    static: {
+      directory: path.join(__dirname, "app")
+    },
+
+    hot: true,
+    historyApiFallback: { index: "index.html" }
+  },
+
   plugins: [
     new htmlWebPackPlugin({
       template: path.resolve(__dirname, 'public', 'index.html')
