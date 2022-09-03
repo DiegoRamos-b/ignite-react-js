@@ -1,8 +1,5 @@
 import React from 'react';
 import App from './App';
+import { render } from 'react-dom';
 
-function Wrapper() {
-  return <App />;
-}
-
-export default Wrapper;
+render(<App />, document.getElementById('root'));
