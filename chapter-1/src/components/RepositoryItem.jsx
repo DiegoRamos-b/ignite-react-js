@@ -3,10 +3,10 @@ import React from 'react';
 function RepositoryItem({ repository }) {
   return (
     <li>
-      <strong>{repository.title ?? 'default'}</strong>
+      <strong>{repository.name ?? 'default'}</strong>
       <p>{repository.description}</p>
 
-      <a href={repository.link ?? '/'} target='blank'>
+      <a href={repository.html_url ?? '/'} target='blank'>
         Acessar repositorio
       </a>
     </li>
