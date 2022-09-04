@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import RepositoryItem from './RepositoryItem';
 
-const respository = {
-  title: 'unform 1',
-  description: 'unform 1 description',
-  link: 'https://www.instagram.com/',
-};
-
 function RepositoryList() {
   const [repositories, setRepositories] = useState([]);
 
