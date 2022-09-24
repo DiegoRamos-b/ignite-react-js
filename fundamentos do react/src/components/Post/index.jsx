@@ -12,7 +12,7 @@ export function Post() {
             src="https://github.com/Drb-Diego.png"
           />
 
-          <div>
+          <div className={styles.authorInfo}>
             <strong>Diego Brito</strong>
             <span>Dev FullStack</span>
           </div>
@@ -25,9 +25,15 @@ export function Post() {
 
       <div className={styles.content}>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ipsa,
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione ipsa
+        </p>
+        <p>
           numquam saepe amet aperiam possimus atque quidem dolore ea molestias
-          soluta provident dolores culpa unde! Tempore quo a nisi aut!
+        </p>
+        <p>
+          <a href="https://github.com/Drb-Diego" target="_blank">
+            soluta provident dolores culpa unde! Tempore quo a nisi aut!
+          </a>
         </p>
       </div>
     </article>
