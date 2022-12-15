@@ -1,5 +1,10 @@
 import React from "react";
 
-export function Post() {
-  return <h1>Post</h1>;
+export function Post({ content, author }) {
+  return (
+    <div>
+      <strong>{author}</strong>
+      <p>{content}</p>
+    </div>
+  );
 }

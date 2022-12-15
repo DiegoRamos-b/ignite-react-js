@@ -3,12 +3,15 @@ import { Post } from "./Post";
 
 export function App() {
   return (
-    <>
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-    </>
+    <div>
+      <Post
+        content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum autem nemo at vero quo, nobis sed cum"
+        author="Diego Ramos"
+      />
+      <Post
+        content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum autem nemo at vero quo, nobis sed cum"
+        author="Tatiana Ramos"
+      />
+    </div>
   );
 }
