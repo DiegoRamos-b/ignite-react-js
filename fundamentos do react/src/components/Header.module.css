@@ -1,17 +1,18 @@
 .header {
-  background-color: #333;
-  height: 80px;
+  background-color: var(--gray-800);
 
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1.24rem 0;
 }
 
-.contentContainer {
-  width: 13.1rem;
-  height: 3.8rem;
-  display: flex;
+.header img {
+  width: 4.1rem;
+  height: 3.9rem;
+}
 
-  justify-content: space-between;
-  align-items: center;
+.header strong {
+  font-size: 1.7rem;
+  margin-left: 1rem;
 }
