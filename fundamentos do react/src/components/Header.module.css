@@ -1,0 +1,17 @@
+.header {
+  background-color: #333;
+  height: 80px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contentContainer {
+  width: 13.1rem;
+  height: 3.8rem;
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+}
