@@ -1,11 +1,12 @@
 import React from "react";
 
 import styles from "./Header.module.css";
+import logo from "../assets/ignite-logo.svg";
 
 export function Header() {
   return (
     <header className={styles.header}>
-      <strong>ignite feed</strong>
+      <img src={logo} />
     </header>
   );
 }
