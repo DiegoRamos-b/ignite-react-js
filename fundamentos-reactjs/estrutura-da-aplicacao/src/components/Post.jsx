@@ -6,9 +6,9 @@ export function Post({ author, content }) {
   return (
     <article className={styles.post}>
       <header>
-        <div>
+        <div className={styles.author}>
           <img src="https://github.com/Drb-Diego.png" />
-          <div>
+          <div className={styles.authorInfo}>
             <strong>Diego Ramos</strong>
             <p>Web Developer</p>
           </div>
@@ -26,10 +26,12 @@ export function Post({ author, content }) {
           no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀
         </p>
         <p>
-          <a href="#"> 👉 jane.design/doctorcare #novoprojeto</a>
+          <a href="#"> jane.design/doctorcare</a>
         </p>
         <p>
-          <a href="#"> #nlw #rocketseat</a>
+          <a href="#">#novoprojeto</a>
+          <a href="#"> #nlw</a>
+          <a href="#"> #rocketseat</a>
         </p>
       </div>
     </article>
