@@ -3,15 +3,16 @@ import React from "react";
 import styles from "./Post.module.css";
 
 import { Comment } from "./Comment";
+import { Avatar } from "./Avatar";
 
 export function Post({ author, content }) {
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <img src="https://github.com/Drb-Diego.png" />
+          <Avatar src="https://github.com/Drb-Diego.png" />
           <div className={styles.authorInfo}>
-            <strong>Diego Ramos</strong>
+            <strong>{author}</strong>
             <p>Web Developer</p>
           </div>
         </div>
@@ -23,10 +24,7 @@ export function Post({ author, content }) {
 
       <div className={styles.content}>
         <p>Fala galeraa 👋 </p>
-        <p>
-          Acabei de subir mais um projeto no meu portifa. É um projeto que fiz
-          no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀
-        </p>
+        <p>{content}</p>
         <p>
           <a href="#"> jane.design/doctorcare</a>
         </p>
