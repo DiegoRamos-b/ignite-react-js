@@ -5,20 +5,20 @@ import styles from "./Post.module.css";
 import { Comment } from "./Comment";
 import { Avatar } from "./Avatar";
 
-export function Post({ author, content }) {
+export function Post({ author, content, publisedAt }) {
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar src="https://github.com/Drb-Diego.png" />
+          <Avatar src={author.avatarUrl} />
           <div className={styles.authorInfo}>
-            <strong>{author}</strong>
-            <p>Web Developer</p>
+            <strong>{author.name}</strong>
+            <p>{author.role}</p>
           </div>
         </div>
 
-        <time dateTime={new Date()} title={new Date()}>
-          {new Date().toLocaleDateString()}
+        <time dateTime={new Date(publisedAt)} title={new Date()}>
+          {new Date(publisedAt).toLocaleDateString()}
         </time>
       </header>
 
