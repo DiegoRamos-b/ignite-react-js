@@ -1,11 +1,25 @@
 import React from "react";
 
+import { format, formatDistanceToNow } from "date-fns";
+import ptBr from "date-fns/locale/pt-BR";
+
 import styles from "./Post.module.css";
 
 import { Comment } from "./Comment";
 import { Avatar } from "./Avatar";
 
 export function Post({ author, content, publisedAt }) {
+  const publishedDateFormated = format(
+    publisedAt,
+    "d 'de' LLLL 'às' HH:mm'h'",
+    { locale: ptBr }
+  );
+
+  const publisedDateRelativeNow = formatDistanceToNow(publisedAt, {
+    locale: ptBr,
+    addSuffix: true,
+  });
+
   return (
     <article className={styles.post}>
       <header>
@@ -17,8 +31,8 @@ export function Post({ author, content, publisedAt }) {
           </div>
         </div>
 
-        <time dateTime={new Date(publisedAt)} title={new Date()}>
-          {new Date(publisedAt).toLocaleDateString()}
+        <time dateTime={publisedAt.toISOString()} title={publishedDateFormated}>
+          {publisedDateRelativeNow}
         </time>
       </header>
 

@@ -9,7 +9,7 @@ const posts = [
     id: 1,
     author: {
       name: "Diego Ramos",
-      avatarUrl: "https://github.com/Drb-Diego.png",
+      avatarUrl: "https://github.com/DiegoRamos-b.png",
       role: "Web Developer",
     },
     content:
@@ -29,6 +29,19 @@ const posts = [
     content:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis, placeat. Illo soluta similique ex a et ipsam, dicta sequi at, nobis quis, obcaecati explicabo sed neque eum porro praesentium provident?",
     publisedAt: new Date("2023-01-1 12:00"),
+  },
+
+  {
+    id: 3,
+    author: {
+      name: "Diego Ramos",
+      avatarUrl: "https://github.com/DiegoRamos-b.png",
+      role: "Web Developer",
+    },
+    content:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo eaque quidem saepe tempora voluptates magni architecto aperiam laudantium illo aut eius enim repudiandae, consequuntur deserunt alias voluptatum odio porro accusantium.",
+
+    publisedAt: new Date("2023-01-04 10:00"),
   },
 ];
 
