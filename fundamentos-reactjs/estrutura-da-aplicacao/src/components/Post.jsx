@@ -9,8 +9,8 @@ import { Comment } from "./Comment";
 import { Avatar } from "./Avatar";
 
 export function Post({ author, content, publisedAt }) {
-  const [comment, setComment] = useState("");
   const [allComments, setAllComments] = useState([]);
+  const [newCommentText, setNewCommentText] = useState("");
 
   const publishedDateFormated = format(
     publisedAt,
@@ -26,8 +26,8 @@ export function Post({ author, content, publisedAt }) {
   const handleCreateNewComment = (event) => {
     event.preventDefault();
 
-    setAllComments([...allComments, comment]);
-    setComment("");
+    setAllComments([...allComments, newCommentText]);
+    setNewCommentText("");
   };
 
   return (
@@ -63,17 +63,16 @@ export function Post({ author, content, publisedAt }) {
         <strong>Deixe seu feedback</strong>
         <textarea
           placeholder="Deixe um comentario"
-          onChange={({ target }) => setComment(target.value)}
-          value={comment}
+          onChange={({ target }) => setNewCommentText(target.value)}
+          value={newCommentText}
         />
         <button>Publicar</button>
       </form>
 
       <div className={styles.commentList}>
-        {allComments.length > 0 &&
-          allComments.map((comment, index) => (
-            <Comment key={index} content={comment} />
-          ))}
+        {allComments.map((comment, index) => (
+          <Comment key={index} content={comment} />
+        ))}
       </div>
     </article>
   );
