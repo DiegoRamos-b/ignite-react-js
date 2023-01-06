@@ -30,6 +30,14 @@ export function Post({ author, content, publisedAt }) {
     setNewCommentText("");
   };
 
+  const handleDeleteComment = (content) => {
+    const filteredComments = allComments.filter(
+      (comment) => comment !== content
+    );
+
+    setAllComments(filteredComments);
+  };
+
   return (
     <article className={styles.post}>
       <header>
@@ -71,7 +79,11 @@ export function Post({ author, content, publisedAt }) {
 
       <div className={styles.commentList}>
         {allComments.map((comment, index) => (
-          <Comment key={index} content={comment} />
+          <Comment
+            key={index}
+            content={comment}
+            deleteComment={handleDeleteComment}
+          />
         ))}
       </div>
     </article>
