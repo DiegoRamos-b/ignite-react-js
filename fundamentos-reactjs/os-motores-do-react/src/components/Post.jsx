@@ -38,6 +38,8 @@ export function Post({ author, content, publisedAt }) {
     setAllComments(filteredComments);
   };
 
+  const isNewCommentEmpty = !newCommentText ? true : false;
+
   return (
     <article className={styles.post}>
       <header>
@@ -71,10 +73,17 @@ export function Post({ author, content, publisedAt }) {
         <strong>Deixe seu feedback</strong>
         <textarea
           placeholder="Deixe um comentario"
-          onChange={({ target }) => setNewCommentText(target.value)}
+          onChange={(event) => {
+            event.target.setCustomValidity("");
+            setNewCommentText(event.target.value);
+          }}
           value={newCommentText}
+          required
+          onInvalid={() =>
+            event.target.setCustomValidity("Este campo é obrigatorio")
+          }
         />
-        <button>Publicar</button>
+        <button disabled={isNewCommentEmpty}>Publicar</button>
       </form>
 
       <div className={styles.commentList}>
