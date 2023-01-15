@@ -1,5 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { differenceInSeconds } from 'date-fns'
+import { useEffect, useState } from 'react'
 import * as zod from 'zod'
 
 import { Play } from 'phosphor-react'
@@ -13,8 +15,6 @@ import {
   StartCountdownButton,
   TaskInput,
 } from './styles'
-import { useEffect, useState } from 'react'
-import { differenceInSeconds } from 'date-fns'
 
 const validationNewCycleSchema = zod.object({
   task: zod.string().min(1, 'Informe a tarefa'),
@@ -47,15 +47,33 @@ export function Home() {
     (currentCycle) => currentCycle.id === activeCycleId,
   )
 
+  const totalSeconds = activeCycle ? activeCycle.minutesAmout * 60 : 0
+  const currentSeconds = activeCycle ? totalSeconds - amoutSecondsPassed : 0
+
+  const minutesAmout = Math.floor(currentSeconds / 60)
+  const secondsAmout = currentSeconds % 60
+
+  const minutes = String(minutesAmout).padStart(2, '0')
+  const seconds = String(secondsAmout).padStart(2, '0')
+
   useEffect(() => {
+    let interval: number
     if (activeCycle) {
-      setInterval(() => {
+      interval = setInterval(() => {
         setAmoutSecondsPassed(
           differenceInSeconds(new Date(), activeCycle.startDate),
         )
       }, 1000)
     }
+
+    return () => {
+      clearInterval(interval)
+    }
   }, [activeCycle])
+
+  useEffect(() => {
+    if (activeCycle) document.title = `Ignite timer = ${minutes}: ${seconds}`
+  }, [minutes, seconds, activeCycle])
 
   const handleCreateNewCycle = ({ task, minutesAmout }: NewCycleFormData) => {
     const id = new Date().getTime().toString()
@@ -69,17 +87,10 @@ export function Home() {
 
     setCycles((state) => [...state, newCycle])
     setActiveCycleId(id)
+    setAmoutSecondsPassed(0)
+
     reset()
   }
-
-  const totalSeconds = activeCycle ? activeCycle.minutesAmout * 60 : 0
-  const currentSeconds = activeCycle ? totalSeconds - amoutSecondsPassed : 0
-
-  const minutesAmout = Math.floor(currentSeconds / 60)
-  const secondsAmout = currentSeconds % 60
-
-  const minutes = String(minutesAmout).padStart(2, '0')
-  const seconds = String(secondsAmout).padStart(2, '0')
 
   const task = watch('task')
   const isSubmitDisabled = !task
