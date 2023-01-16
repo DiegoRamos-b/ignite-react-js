@@ -1,5 +1,5 @@
 import { differenceInSeconds } from 'date-fns'
-import { useEffect, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 
 import { HandPalm, Play } from 'phosphor-react'
 
@@ -20,42 +20,51 @@ interface Cycle {
   finishedDate?: Date
 }
 
+interface CyclesContextType {
+  activeCycle: Cycle | undefined
+  activeCycleId: string | null
+  cycles: Cycle[]
+  markCurrentCycleAsFinish: () => void
+}
+
+export const CyclesContext = createContext({} as CyclesContextType)
+
 export function Home() {
   const [cycles, setCycles] = useState<Cycle[]>([])
   const [activeCycleId, setActiveCycleId] = useState<string | null>(null)
+
+  const markCurrentCycleAsFinish = () => {
+    const cycleInterrupted = cycles.map((cycle) => {
+      if (cycle.id === activeCycleId) {
+        return { ...cycle, finishedDate: new Date() }
+      }
+
+      return cycle
+    })
+
+    setCycles(cycleInterrupted)
+  }
 
   const activeCycle = cycles.find(
     (currentCycle) => currentCycle.id === activeCycleId,
   )
 
-  const currentSeconds = activeCycle ? totalSeconds - amoutSecondsPassed : 0
+  // const handleCreateNewCycle = ({ task, minutesAmout }: NewCycleFormData) => {
+  //   const id = new Date().getTime().toString()
 
-  const minutesAmout = Math.floor(currentSeconds / 60)
-  const secondsAmout = currentSeconds % 60
+  //   const newCycle = {
+  //     id,
+  //     task,
+  //     minutesAmout,
+  //     startDate: new Date(),
+  //   }
 
-  const minutes = String(minutesAmout).padStart(2, '0')
-  const seconds = String(secondsAmout).padStart(2, '0')
+  //   setCycles((state) => [...state, newCycle])
+  //   setActiveCycleId(id)
+  //   setAmoutSecondsPassed(0)
 
-  useEffect(() => {
-    if (activeCycle) document.title = `Ignite timer - ${minutes}: ${seconds}`
-  }, [minutes, seconds, activeCycle])
-
-  const handleCreateNewCycle = ({ task, minutesAmout }: NewCycleFormData) => {
-    const id = new Date().getTime().toString()
-
-    const newCycle = {
-      id,
-      task,
-      minutesAmout,
-      startDate: new Date(),
-    }
-
-    setCycles((state) => [...state, newCycle])
-    setActiveCycleId(id)
-    setAmoutSecondsPassed(0)
-
-    reset()
-  }
+  //   reset()
+  // }
 
   const handleInterrupCycle = () => {
     const cycleInterrupted = cycles.map((cycle) => {
@@ -70,14 +79,23 @@ export function Home() {
     setActiveCycleId(null)
   }
 
-  const task = watch('task')
-  const isActive = !task
+  // const task = watch('task')
+  // const isActive = !task
 
   return (
     <HomeContainer>
-      <form onSubmit={handleSubmit(handleCreateNewCycle)}>
-        <NewCycleForm />
-        <Countdown />
+      <form /* onSubmit={handleSubmit(handleCreateNewCycle)} */>
+        <CyclesContext.Provider
+          value={{
+            activeCycle,
+            activeCycleId,
+            cycles,
+            markCurrentCycleAsFinish,
+          }}
+        >
+          {/* <NewCycleForm /> */}
+          <Countdown />
+        </CyclesContext.Provider>
 
         {activeCycle ? (
           <StopCountDownButton onClick={handleInterrupCycle} type="button">
@@ -85,7 +103,7 @@ export function Home() {
             Interromper
           </StopCountDownButton>
         ) : (
-          <StartCountownButton disabled={isActive} type="submit">
+          <StartCountownButton /* disabled={isActive} */ type="submit">
             <Play />
             Começar
           </StartCountownButton>
