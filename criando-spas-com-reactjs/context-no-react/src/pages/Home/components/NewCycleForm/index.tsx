@@ -1,30 +1,19 @@
-import { useForm } from 'react-hook-form'
-import * as zod from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { FormContainer, MinutesAmoutInput, TaskInput } from './styles'
-
-const validationNewCycleSchema = zod.object({
-  task: zod.string().min(1, 'Informe a tarefa'),
-  minutesAmout: zod.number().min(1).max(60),
-})
-
-type NewCycleFormData = zod.infer<typeof validationNewCycleSchema>
+import { FormContainer, MinutesAmountInput, TaskInput } from './styles'
+import { useContext } from 'react'
+import { CyclesContext } from '../..'
+import { useFormContext } from 'react-hook-form'
 
 export function NewCycleForm() {
-  const { register, handleSubmit, reset, watch } = useForm<NewCycleFormData>({
-    resolver: zodResolver(validationNewCycleSchema),
-    defaultValues: {
-      task: '',
-      minutesAmout: 0,
-    },
-  })
+  const { activeCycle } = useContext(CyclesContext)
+  const { register } = useFormContext()
+
   return (
     <FormContainer>
       <label htmlFor="task">Vou trabalhar em</label>
       <TaskInput
         id="task"
         list="task-suggestions"
-        placeholder="De um nome para o seu projeto"
+        placeholder="Dê um nome para o seu projeto"
         disabled={!!activeCycle}
         {...register('task')}
       />
@@ -33,21 +22,22 @@ export function NewCycleForm() {
         <option value="Projeto 1" />
         <option value="Projeto 2" />
         <option value="Projeto 3" />
+        <option value="Banana" />
       </datalist>
 
-      <label htmlFor="minutesAmout">Durante</label>
-      <MinutesAmoutInput
-        id="minutesAmout"
+      <label htmlFor="minutesAmount">durante</label>
+      <MinutesAmountInput
         type="number"
+        id="minutesAmount"
         placeholder="00"
         step={5}
-        min={1}
+        min={5}
         max={60}
         disabled={!!activeCycle}
-        {...register('minutesAmout', { valueAsNumber: true })}
+        {...register('minutesAmount', { valueAsNumber: true })}
       />
 
-      <span>Minutos.</span>
+      <span>minutos.</span>
     </FormContainer>
   )
 }
